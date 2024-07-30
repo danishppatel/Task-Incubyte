@@ -67,7 +67,13 @@ public class StringCalculator
 
     private int parseInt(String numStr) {
         try {
-            return Integer.parseInt(numStr); // Parse string to an integer
+            long num = Long.parseLong(numStr);
+
+            // Throw Exception if number is out of Bounds
+            if (num > Integer.MAX_VALUE || num < Integer.MIN_VALUE) {
+                throw new IllegalArgumentException("Number out of bounds: " + numStr);
+            }
+            return (int) num;
         } catch (NumberFormatException e) {
             // If parsing fails, throw an exception with an error message
             throw new IllegalArgumentException("Invalid number format: " + numStr , e);
@@ -85,7 +91,7 @@ public class StringCalculator
             System.out.println(calculator.add("1\n2,3"));
             System.out.println(calculator.add("1\n\n2"));
             System.out.println(calculator.add("//;\n1;2"));
-            System.out.println(calculator.add("//::\n10::20:30"));
+            System.out.println(calculator.add("21474836489"));
             System.out.println(calculator.add("-1,2"));
             System.out.println(calculator.add("1,-2,-3"));
         }

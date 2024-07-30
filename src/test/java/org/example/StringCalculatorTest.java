@@ -85,4 +85,15 @@ public class StringCalculatorTest {
             assertEquals("Negative numbers not allowed: " + expectedMessage , e.getMessage());
         }
     }
+    @Test
+    public void testAddIntegerOutOfBounds() {
+        try {
+            calculator.add("2147483648");
+            fail("Exception expected.");
+        } catch (Exception e) {
+            assertEquals("Number out of bounds: 2147483648", e.getMessage());
+        }
+    }
+
+
 }
