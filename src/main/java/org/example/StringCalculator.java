@@ -97,6 +97,7 @@ public class StringCalculator
             System.out.println(calculator.add("1\n2,3"));
             System.out.println(calculator.add("1\n\n2"));
             System.out.println(calculator.add("//;\n1;2"));
+            System.out.println(calculator.add(",1,2"));
             System.out.println(calculator.add("1,2,"));
             System.out.println(calculator.add("21474836489"));
             System.out.println(calculator.add("-1,2"));
