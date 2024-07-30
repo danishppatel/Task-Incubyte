@@ -54,6 +54,11 @@ public class StringCalculatorTest {
     public void testAddNewLineDelimiter() {
         assertEquals(6, calculator.add("1\n2,3"));
     }
+    @Test
+    public void testAddMultipleConsecutiveNewLines() {
+        assertEquals(3, calculator.add("1\n\n2"));
+    }
+
 
     @Test
     public void testAddCustomDelimiter() {

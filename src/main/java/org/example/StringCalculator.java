@@ -29,7 +29,7 @@ public class StringCalculator
         }
 
         // Replace new lines with  the default comma
-        numberString = numberString.replace("\n", defaultDelimiter);
+        numberString = numberString.replaceAll("\n+", defaultDelimiter);
 
         // Split the string by the comma to get individual number strings
         String[] numberArray = numberString.split(defaultDelimiter);
@@ -83,6 +83,7 @@ public class StringCalculator
             System.out.println(calculator.add("1,2"));
             System.out.println(calculator.add("10,20,30,40,50"));
             System.out.println(calculator.add("1\n2,3"));
+            System.out.println(calculator.add("1\n\n2"));
             System.out.println(calculator.add("//;\n1;2"));
             System.out.println(calculator.add("-1,2"));
             System.out.println(calculator.add("1,-2,-3"));
