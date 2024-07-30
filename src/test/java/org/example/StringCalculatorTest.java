@@ -37,7 +37,7 @@ public class StringCalculatorTest {
     }
     @Parameters
     public static Collection<Object[]> data() {
-        //Add test cases for multiple comma-separated numbers
+        //Add test cases for multiple comma-separated numbers as you want
         return Arrays.asList(new Object[][] {
                 { "1,2,3,4", 10 },
                 { "10,20,30,40,50", 150 },
@@ -54,6 +54,13 @@ public class StringCalculatorTest {
     public void testAddNewLineDelimiter() {
         assertEquals(6, calculator.add("1\n2,3"));
     }
+
+    @Test
+    public void testAddCustomDelimiter() {
+        assertEquals(3, calculator.add("//;\n1;2"));
+        //Add your Custom Delimiter test Cases here
+    }
+
 
 
 }

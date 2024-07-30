@@ -1,4 +1,7 @@
 package org.example;
+
+import java.util.regex.Pattern;
+
 public class StringCalculator
 {
     public int add(String numbers) throws IllegalArgumentException {
@@ -7,13 +10,29 @@ public class StringCalculator
             return 0;
         }
 
+        String defaultDelimiter = ",";
         String delimiter = ",";
         String numberString = numbers;
+        boolean isCustomDelimiter = false;
 
-        numberString = numberString.replace("\n", delimiter);
+        // If the input starts with "//", it means a custom delimiter is specified
+        if (numbers.startsWith("//")) {
+            isCustomDelimiter = true;
+            int delimiterIndex = numbers.indexOf("\n");
+            delimiter = numbers.substring(2, delimiterIndex);
+            numberString = numbers.substring(delimiterIndex + 1);
+        }
+
+        if (isCustomDelimiter) {
+            // Replace 'custom delimiter'  with the default comma
+            numberString = numberString.replace(delimiter, defaultDelimiter);
+        }
+
+        // Replace new lines with  the default comma
+        numberString = numberString.replace("\n", defaultDelimiter);
 
         // Split the string by the comma to get individual number strings
-        String[] numberArray = numberString.split(delimiter);
+        String[] numberArray = numberString.split(defaultDelimiter);
 
         // Calculate the sum of the numbers
         return calculateSum(numberArray);
@@ -38,7 +57,7 @@ public class StringCalculator
             return Integer.parseInt(numStr); // Parse string to an integer
         } catch (NumberFormatException e) {
             // If parsing fails, throw an exception with an error message
-            throw new IllegalArgumentException("Invalid number format: " + numStr, e);
+            throw new IllegalArgumentException("Invalid number format: (" + numStr + ")", e);
         }
     }
     public static void main( String[] args )
@@ -50,6 +69,7 @@ public class StringCalculator
         System.out.println(calculator.add("1,2"));
         System.out.println(calculator.add("10,20,30,40,50"));
         System.out.println(calculator.add("1\n2,3"));
+        System.out.println(calculator.add("//;\n1;2"));
 
     }
 }
