@@ -19,7 +19,7 @@ public class StringCalculator
         if (numbers.startsWith("//")) {
             isCustomDelimiter = true;
             int delimiterIndex = numbers.indexOf("\n");
-            delimiter = numbers.substring(2, delimiterIndex);
+            delimiter = numbers.substring(2, delimiterIndex);   //find the custom delimeter
             numberString = numbers.substring(delimiterIndex + 1);
         }
 
@@ -85,6 +85,7 @@ public class StringCalculator
             System.out.println(calculator.add("1\n2,3"));
             System.out.println(calculator.add("1\n\n2"));
             System.out.println(calculator.add("//;\n1;2"));
+            System.out.println(calculator.add("//::\n10::20:30"));
             System.out.println(calculator.add("-1,2"));
             System.out.println(calculator.add("1,-2,-3"));
         }

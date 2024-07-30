@@ -63,6 +63,7 @@ public class StringCalculatorTest {
     @Test
     public void testAddCustomDelimiter() {
         assertEquals(3, calculator.add("//;\n1;2"));
+        assertEquals(60, calculator.add("//::\n10::20::30"));
         //Add your Custom Delimiter test Cases here
     }
 
