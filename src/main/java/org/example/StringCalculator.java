@@ -1,7 +1,7 @@
 package org.example;
 
-import java.util.regex.Pattern;
-
+import java.util.ArrayList;
+import java.util.List;
 public class StringCalculator
 {
     public int add(String numbers) throws IllegalArgumentException {
@@ -39,13 +39,26 @@ public class StringCalculator
     }
 
     private int calculateSum(String[] numberArray) {
+        // Store negative numbers present from numberArray
+        List<Integer> negatives = new ArrayList<>();
+
         // Store the element Sum
         int sum = 0;
 
         // Iterate through each number string
         for (String numStr : numberArray) {
             int num = parseInt(numStr); // Convert the string to an integer
-            sum += num;
+
+            if (num < 0) {
+                negatives.add(num);
+            } else {
+                sum += num;
+            }
+        }
+
+        // Means that it contains negative number
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negative numbers not allowed: " + negatives.toString());
         }
 
         // Return the calculated sum
@@ -57,19 +70,25 @@ public class StringCalculator
             return Integer.parseInt(numStr); // Parse string to an integer
         } catch (NumberFormatException e) {
             // If parsing fails, throw an exception with an error message
-            throw new IllegalArgumentException("Invalid number format: (" + numStr + ")", e);
+            throw new IllegalArgumentException("Invalid number format: " + numStr , e);
         }
     }
     public static void main( String[] args )
     {
         StringCalculator  calculator =new StringCalculator();
 
-        System.out.println(calculator.add(""));
-        System.out.println(calculator.add("1"));
-        System.out.println(calculator.add("1,2"));
-        System.out.println(calculator.add("10,20,30,40,50"));
-        System.out.println(calculator.add("1\n2,3"));
-        System.out.println(calculator.add("//;\n1;2"));
-
+        try {
+            System.out.println(calculator.add(""));
+            System.out.println(calculator.add("1"));
+            System.out.println(calculator.add("1,2"));
+            System.out.println(calculator.add("10,20,30,40,50"));
+            System.out.println(calculator.add("1\n2,3"));
+            System.out.println(calculator.add("//;\n1;2"));
+            System.out.println(calculator.add("-1,2"));
+            System.out.println(calculator.add("1,-2,-3"));
+        }
+        catch(IllegalArgumentException e){
+            System.err.println(e.getMessage());
+        }
     }
 }

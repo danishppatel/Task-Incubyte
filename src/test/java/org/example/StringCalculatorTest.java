@@ -61,6 +61,27 @@ public class StringCalculatorTest {
         //Add your Custom Delimiter test Cases here
     }
 
+    @Test
+    public void testAddNegativeNumber() {
+        assertNegativeNumbersException("-1,2", "[-1]");
+    }
+
+    @Test
+    public void testAddMultipleNegativeNumbers() {
+        assertNegativeNumbersException("1,-2,-3", "[-2, -3]");
+    }
+
+    private void assertNegativeNumbersException(String input, String expectedMessage) {
+        try {
+            calculator.add(input);
+            fail("Exception expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Negative numbers not allowed: " + expectedMessage , e.getMessage());
+        }
+    }
+
+
+
 
 
 }
