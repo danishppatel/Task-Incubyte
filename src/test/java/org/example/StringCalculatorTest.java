@@ -1,38 +1,13 @@
 package org.example;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+public class StringCalculatorTest {
+    private final StringCalculator calculator = new StringCalculator();
 
-/**
- * Unit test for simple App.
- */
-public class StringCalculatorTest
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public StringCalculatorTest(String testName )
-    {
-        super( testName );
+    @Test
+    public void testAddEmptyString() {
+        assertEquals(0, calculator.add("") );
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( StringCalculatorTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
 }
