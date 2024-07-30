@@ -6,7 +6,7 @@ public class StringCalculator
 {
     public int add(String numbers) throws IllegalArgumentException {
         // If the input string is empty, return 0
-        if (numbers.isEmpty()) {
+        if (numbers.trim().isEmpty()) {
             return 0;
         }
 
@@ -21,6 +21,12 @@ public class StringCalculator
             int delimiterIndex = numbers.indexOf("\n");
             delimiter = numbers.substring(2, delimiterIndex);   //find the custom delimeter
             numberString = numbers.substring(delimiterIndex + 1);
+        }
+
+        // Throw Exception if leading or trailing delimiter is present.
+        if (numbers.startsWith(delimiter) || numbers.endsWith(delimiter)) {
+            throw new IllegalArgumentException("Invalid input format: " +
+                    (numbers.startsWith(delimiter) ? "leading delimiter" : numbers.endsWith(delimiter) ? "trailing delimiter" : "only delimiter"));
         }
 
         if (isCustomDelimiter) {
@@ -91,6 +97,7 @@ public class StringCalculator
             System.out.println(calculator.add("1\n2,3"));
             System.out.println(calculator.add("1\n\n2"));
             System.out.println(calculator.add("//;\n1;2"));
+            System.out.println(calculator.add("1,2,"));
             System.out.println(calculator.add("21474836489"));
             System.out.println(calculator.add("-1,2"));
             System.out.println(calculator.add("1,-2,-3"));

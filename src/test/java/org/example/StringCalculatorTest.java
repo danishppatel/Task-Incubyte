@@ -95,5 +95,23 @@ public class StringCalculatorTest {
         }
     }
 
+    @Test
+    public void testAddLeadingDelimiter() {
+        try {
+            calculator.add(",1,2");
+            fail("Exception expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Invalid input format: leading delimiter", e.getMessage());
+        }
+    }
 
+    @Test
+    public void testAddTrailingDelimiter() {
+        try {
+            calculator.add("1,2,");
+            fail("Exception expected");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Invalid input format: trailing delimiter", e.getMessage());
+        }
+    }
 }
