@@ -84,9 +84,4 @@ public class StringCalculatorTest {
             assertEquals("Negative numbers not allowed: " + expectedMessage , e.getMessage());
         }
     }
-
-
-
-
-
 }
