@@ -50,6 +50,10 @@ public class StringCalculatorTest {
     public void testAddMultipleCommaSeparatedNumbers() {
         assertEquals(expected, calculator.add(input));
     }
+    @Test
+    public void testAddNewLineDelimiter() {
+        assertEquals(6, calculator.add("1\n2,3"));
+    }
 
 
 }

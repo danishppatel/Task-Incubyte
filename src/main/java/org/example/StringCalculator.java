@@ -10,6 +10,8 @@ public class StringCalculator
         String delimiter = ",";
         String numberString = numbers;
 
+        numberString = numberString.replace("\n", delimiter);
+
         // Split the string by the comma to get individual number strings
         String[] numberArray = numberString.split(delimiter);
 
@@ -47,5 +49,7 @@ public class StringCalculator
         System.out.println(calculator.add("1"));
         System.out.println(calculator.add("1,2"));
         System.out.println(calculator.add("10,20,30,40,50"));
+        System.out.println(calculator.add("1\n2,3"));
+
     }
 }
